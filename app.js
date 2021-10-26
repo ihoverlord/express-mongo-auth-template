@@ -31,15 +31,15 @@ app.use(function (err, req, res, next) {
     if (err && err.error && err.error.isJoi) {
         // we had a joi error, let's return a custom 400 json response
         res.status(400).send({
-          error: true, // will be "query" here, but could be "headers", "body", or "params"
-          message: err.error.toString()
+            error: true, // will be "query" here, but could be "headers", "body", or "params"
+            message: err.error.message
         });
-      } else {
+    } else {
         // pass on to another error handler
         // next(err);
         console.log(err)
         res.status(500).send({ error: true, message: 'Something broke! Try again later.' })
-      }
+    }
 })
 
 const startServer = (server) => {
